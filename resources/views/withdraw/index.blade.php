@@ -6,5 +6,6 @@
                     @include('withdraw.partials.withdraw-form')
                 </div>
             </div>
-        </div></div>
+        </div>
+    </div>
 </x-app-layout>

@@ -10,22 +10,22 @@
         @method('post')
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" autocomplete="email" />
+            <x-input-label for="email" :value="__('Email')"/>
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" autocomplete="email"/>
 
         </div>
 
         <div>
-            <x-input-label for="amount" :value="__('Amount')" />
-            <x-text-input id="transfer_amount" name="amount" type="number" class="mt-1 block w-full" autocomplete="transfer-amount" />
+            <x-input-label for="amount" :value="__('Amount')"/>
+            <x-text-input id="transfer_amount" name="amount" type="number" class="mt-1 block w-full"
+                          autocomplete="transfer-amount"/>
 
         </div>
 
 
-
-
         <div class="flex items-center gap-6">
-            <x-primary-button style="width: 100%; display: flex; justify-content: center;">{{ __('Save') }}</x-primary-button>
+            <x-primary-button
+                style="width: 100%; display: flex; justify-content: center;">{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'transfer-amount')
                 <p

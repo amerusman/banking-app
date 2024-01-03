@@ -10,16 +10,16 @@
         @method('post')
 
         <div>
-            <x-input-label for="amount" :value="__('Amount')" />
-            <x-text-input id="withdraw_amount" name="amount" type="number" class="mt-1 block w-full" autocomplete="withdraw.amount" />
+            <x-input-label for="amount" :value="__('Amount')"/>
+            <x-text-input id="withdraw_amount" name="amount" type="number" class="mt-1 block w-full"
+                          autocomplete="withdraw.amount"/>
 
         </div>
 
 
-
-
         <div class="flex items-center gap-6">
-            <x-primary-button style="width: 100%; display: flex; justify-content: center;">{{ __('Save') }}</x-primary-button>
+            <x-primary-button
+                style="width: 100%; display: flex; justify-content: center;">{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'withdraw.amount')
                 <p
