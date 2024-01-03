@@ -18,22 +18,16 @@
             </tr>
             </thead>
             <tbody>
-            <?php $num=1;?>
+            <?php $num = 1; ?>
             @foreach ($statement as $row)
                 <tr>
                     <th scope="row">{{$num}}</th>
                     <td>{{$row->created_at}}</td>
                     <td>{{$row->amount}}</td>
                     <td>{{$row->type}}</td>
-                    @if(!empty($row->transfer) and $row->type == 'credit')
-                        <td>Transfer To</td>
-                    @elseif($row->type == 'credit' and empty($row->transfer))
-                        <td>Deposit</td>
-                    @else
-                    <td>WithDraw</td>
-                    @endif
+                    <td>{{$row->getTransactionDetails()}}</td>
                     <td>{{$row->balance_after}}</td>
-                        <?php $num++;?>
+                        <?php $num++; ?>
                 </tr>
             @endforeach
             </tbody>

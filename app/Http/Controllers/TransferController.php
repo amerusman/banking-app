@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use App\Services\PaymentService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +16,7 @@ class TransferController extends Controller
 {
     /**
      * @param Request $request
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function transferForm(Request $request)
     {

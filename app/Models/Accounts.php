@@ -14,4 +14,9 @@ class Accounts extends Model
         'user_id',
         'account_no'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
 }

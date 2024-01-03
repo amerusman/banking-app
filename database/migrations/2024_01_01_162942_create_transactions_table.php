@@ -18,7 +18,6 @@ return new class extends Migration {
                 ->on('accounts');
             $table->decimal('amount', 10, 2);
             $table->string('type'); // e.g., 'credit', 'debit'
-            $table->string('details'); // e.g., 'deposit', 'withdrawal', 'transfer'
             $table->decimal('balance_before', 10, 2);
             $table->decimal('balance_after', 10, 2);
             $table->timestamps();

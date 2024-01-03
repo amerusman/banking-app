@@ -13,12 +13,25 @@ class Transactions extends Model
         'account_no',
         'amount',
         'type',
-        'details',
         'balance_before',
         'balance_after'
     ];
-    public function transfer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+
+    public function transfer()
     {
-        return $this->belongsTo('App\Models\Transfers','transaction_id');
+        return $this->hasOne('App\Models\Transfers', 'transaction_id');
+    }
+
+    public function getTransactionDetails()
+    {
+        $type = [
+            'debit' => ['Transfer to', 'recipient', 'Withdraw'],
+            'credit' => ['Transfer from', 'sender', 'Deposit']
+        ];
+        if (optional($this->transfer)->id) {
+            return $type[$this->type][0] . ' ' . $this->transfer->{$type[$this->type][1]}->user->name . ' (' . $this->transfer->{$type[$this->type][1]}->account_no . ')';
+        } else {
+            return $type[$this->type][2];
+        }
     }
 }

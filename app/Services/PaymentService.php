@@ -7,7 +7,6 @@ use App\Models\Transactions;
 use App\Models\Transfers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -51,7 +50,7 @@ class PaymentService
 
         $transaction = Transactions::create([
             'amount' => $amount,
-            'type' => 'debit',
+            'type' => 'credit',
             'account_no' => $account_no,
             'balance_before' => $balance_before,
             'balance_after' => $balance_after,
@@ -87,7 +86,7 @@ class PaymentService
 
         $transaction = Transactions::create([
             'amount' => $amount,
-            'type' => 'credit',
+            'type' => 'debit',
             'account_no' => $account_no,
             'balance_before' => $balance_before,
             'balance_after' => $balance_after,
@@ -124,7 +123,8 @@ class PaymentService
             'email' => $email,
             'password' => Hash::make('Password'),
         ]);
-        return $this->createAccount($user->id);
+        $this->createAccount($user->id);
+        return $user;
 
     }
 
@@ -155,8 +155,8 @@ class PaymentService
             $receiver = $this->createNewUser($email);
         }
         $recipient_account = $receiver->accounts;
-        $tid = $this->withdraw($this->user->accounts->balance, $amount);
-        $this->transfers($this->user->accounts->id, $receiver->accounts->id, $tid, $amount);
+        $tid = $this->withdraw($this->user->accounts->account_no, $amount);
+        $this->transfers($this->user->accounts->id, $recipient_account->id, $tid, $amount);
 
         $tid = $this->deposit($recipient_account->account_no, $amount);
         $this->transfers($recipient_account->id, $this->user->accounts->id, $tid, $amount);
